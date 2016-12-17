@@ -25,10 +25,10 @@ if oldminor < 3 then
 		attributestorage[self][key] = value
 		local name = namestorage[self]
 		if not name then return end
-		callbacks:Fire("LibDataBroker_AttributeChanged", name, key, value, self)
-		callbacks:Fire("LibDataBroker_AttributeChanged_"..name, name, key, value, self)
-		callbacks:Fire("LibDataBroker_AttributeChanged_"..name.."_"..key, name, key, value, self)
-		callbacks:Fire("LibDataBroker_AttributeChanged__"..key, name, key, value, self)
+		callbacks:Fire("LibDataBroker_AttributeChanged", 4, name, key, value, self)
+		callbacks:Fire("LibDataBroker_AttributeChanged_"..name, 4, name, key, value, self)
+		callbacks:Fire("LibDataBroker_AttributeChanged_"..name.."_"..key, 4, name, key, value, self)
+		callbacks:Fire("LibDataBroker_AttributeChanged__"..key, 4, name, key, value, self)
 	end
 end
 
@@ -46,7 +46,7 @@ if oldminor < 2 then
 		end
 		dataobj = setmetatable(dataobj or {}, self.domt)
 		self.proxystorage[name], self.namestorage[dataobj] = dataobj, name
-		self.callbacks:Fire("LibDataBroker_DataObjectCreated", name, dataobj)
+		self.callbacks:Fire("LibDataBroker_DataObjectCreated", 2, name, dataobj)
 		return dataobj
 	end
 end
